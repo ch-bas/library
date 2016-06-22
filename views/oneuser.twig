@@ -1,0 +1,11 @@
+{% extends 'layout.twig' %}
+{% block content %}
+<h4>Modif des users</h4>
+    <form class="form-group" method="POST" action="#">
+	
+	
+	<label>Old Username :</label><input type="text" class="form-control" id="username" name="username" value="{{user.username}}" />
+	<label>Old Email :</label><input type="text" class="form-control" id="email" name="email" value='{{user.email}}' />
+	<input type="submit" class="btn btn-primary" value="enregistrer"/>
+	</form>
+{% endblock %}

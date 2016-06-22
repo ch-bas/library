@@ -1,0 +1,28 @@
+{% extends 'layout.twig' %}
+{% block content %}
+
+
+
+
+{% if (curruser.role) %}
+
+<form method="post" id="prjform" class="form-group">
+<label>Titre</label> <input type="text" class="form-control" id="titre" name="titre" /> <br/>
+<label for="desc">Description</label> <textarea class="form-control" name="desc" id="desc" form="prjform">Enter text here...</textarea><br/>
+ <label>ISBN</label> <input class="form-control" type="number" id="isbn" name="isbn" /><br/>
+ <input type="submit" class="btn btn-primary" value="Ajouter" />
+<select name="cat">
+    {% for m in cat %}
+    <option value="{{m._id}}">{{m.libel}}</option>
+    {% endfor %}
+</select>
+</form>
+
+
+
+{% else %}
+<h1>Vous n'avez pas le droit</h1>
+{% endif %}
+
+
+{% endblock %}

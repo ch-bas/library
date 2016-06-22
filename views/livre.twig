@@ -1,0 +1,22 @@
+{% extends 'layout.twig' %}
+{% block content %}
+{% if not curruser %} 
+<h1>Vous n'avez pas le droit</h1>
+{% else %}
+ {% for p in livres %}
+        <h3>{{p.titre}}</h3> 
+        <h5>{{p._category.libel}}</h5>
+            {% if curruser.role %}
+       
+    <a class="btn btn-success" href="/livre/new">Ajouter des livres </a> 
+    {% else %}
+
+             <a class="btn btn-success" href="/livre/emp/{{p._id}}">order livres </a> 
+  
+    {% endif %}
+        <br/>
+         {% endfor %}
+    
+
+    {% endif %}
+{% endblock %}

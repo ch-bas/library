@@ -1,0 +1,41 @@
+{% extends 'layout.twig' %}
+{% block content %}
+    {% if not user %}
+        <a class="btn btn-primary" href="/login"> Login</a>
+        
+        <a class="btn btn-success" href="/register"> Register</a>
+    {% else %}
+        <h3>Welcome. Vous etes connecté en tant que {{user.username}}</h3>
+<ul class="notifications">
+
+    </ul>
+<form method="post">
+    <input type="text" name="askme" ng-model="askme">
+    <input type="submit" onclick="tkalem2()">
+</form>
+       <script src="/js/jquery.min.js"></script>
+    <script src="/socket.io/socket.io.js"></script>
+    <script>
+        var socket = io.connect('http://localhost:3001');
+        socket.on('status', function(n){
+           
+            $('.notifications').prepend('<li>'+n+'</li>');
+        });
+ </script>
+    {% endif %}
+	
+	{% if user.role == true %}
+	 <a  href="/users">Gestion des utilisateurs </a> <br/>
+	 <a  href="/livre">Gestion des livres </a><br/>
+	  <a  href="/logout"> Logout </a><br/>
+	{% endif %}
+
+{% if user.role == false %}
+
+{% for pp in user.livres_emp%}
+    {{pp.titre}}<br>
+{% endfor %}
+	 <a href="/livre">Gestion des livres </a><br/>
+	  <a  href="/logout"> Logout </a><br/>
+	{% endif %}
+{% endblock %}
