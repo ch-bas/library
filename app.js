@@ -57,8 +57,7 @@ mongoose.connect('mongodb://localhost/atelierExam');
 
 app.use('/', require('./routes/index')(io));
 app.use('/category', users);
-app.use('/pc', require('./routes/pcs'));
-app.use('/livre', livres(io));
+ app.use('/livre', livres(io));
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
